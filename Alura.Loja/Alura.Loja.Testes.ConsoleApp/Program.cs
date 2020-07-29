@@ -13,6 +13,36 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
+            //Compra de 6 pães franceses
+            var paoFrances = new Produto();
+            paoFrances.Nome = "Pão Francês";
+            paoFrances.PrecoUnitario = 0.40;
+            paoFrances.Unidade = "Unidade";
+            paoFrances.Categoria = "Padaria";
+
+            var compra = new Compra();
+            compra.Quantidade = 6;
+            compra.Produto = paoFrances;
+            compra.Preco = paoFrances.PrecoUnitario * compra.Quantidade;
+
+            using(var contexto = new LojaContext())
+            {
+                //-----Inicio - Mostra os comandos no banco-------------------
+                var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
+                var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(SqlLoggerProvider.Create());
+                //-----Fim - Mostra os comandos no banco----------------------
+
+                contexto.Compras.Add(compra);
+
+                ExibeEntries(contexto.ChangeTracker.Entries());
+
+                contexto.SaveChanges();
+
+                ExibeEntries(contexto.ChangeTracker.Entries());
+
+                Console.ReadLine();
+            }
 
         }
 
@@ -57,7 +87,7 @@ namespace Alura.Loja.Testes.ConsoleApp
                 //--------------------------------------------------
                 Console.ReadLine();
             }
-        }
+        }*/
 
         private static void ExibeEntries(IEnumerable<EntityEntry> entries)
         {
@@ -68,7 +98,7 @@ namespace Alura.Loja.Testes.ConsoleApp
                 //Console.WriteLine(e);
                 Console.WriteLine(e.Entity.ToString() + " - " + e.State);//Esse e.entity é a referentecia para o produto (no produto tem o To String)
             }
-        }*/
+        }
 
     }
 }

@@ -1,19 +1,21 @@
-instalar o entity framework
+1-instalar o entity framework
 Install-Package Microsoft.EntityFrameworkCore.SqlServer Version 1.1
 
-Instalar o Migration
+2-Instalar o Migration
 Install-Package Microsoft.EntityFrameworkCore.Tools -Version 1.1.1
 
-Help do EntityFrameWork (da pra consultar os comandos disponíveis)
+3-Help do EntityFrameWork (da pra consultar os comandos disponíveis)
 Get-Help EntityFramework
 
-Adicionar a migration (Add-Migration NOMEQUEEUQUISERDAR)
+4-Adicionar a migration (Add-Migration NOMEQUEEUQUISERDAR)
 Add-Migration Unidade
 
-Atualizar o banco de dados com a migration gerada:
+5-Atualizar o banco de dados com a migration gerada:
 Update-Database
 ou
 Update-Database -Verbose (o verbose serve pro prompt printar todos os processos durante o updade do banco)
 Ou
 Update-Database NomeDaMigration
 
+6-Deletar Migration
+Remove-Migration
