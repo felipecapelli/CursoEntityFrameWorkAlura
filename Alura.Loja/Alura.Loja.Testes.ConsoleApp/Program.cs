@@ -12,6 +12,12 @@ namespace Alura.Loja.Testes.ConsoleApp
     class Program
     {
         static void Main(string[] args)
+        {
+
+        }
+
+
+        /*static void Main(string[] args)
         { 
             using(var contexto = new LojaContext())
             {
@@ -62,7 +68,7 @@ namespace Alura.Loja.Testes.ConsoleApp
                 //Console.WriteLine(e);
                 Console.WriteLine(e.Entity.ToString() + " - " + e.State);//Esse e.entity é a referentecia para o produto (no produto tem o To String)
             }
-        }
+        }*/
 
     }
 }
