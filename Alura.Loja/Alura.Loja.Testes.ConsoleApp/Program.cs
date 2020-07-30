@@ -13,8 +13,7 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
-            //Compra de 6 pães franceses
-            var paoFrances = new Produto();
+            /*var paoFrances = new Produto();
             paoFrances.Nome = "Pão Francês";
             paoFrances.PrecoUnitario = 0.40;
             paoFrances.Unidade = "Unidade";
@@ -23,9 +22,22 @@ namespace Alura.Loja.Testes.ConsoleApp
             var compra = new Compra();
             compra.Quantidade = 6;
             compra.Produto = paoFrances;
-            compra.Preco = paoFrances.PrecoUnitario * compra.Quantidade;
+            compra.Preco = paoFrances.PrecoUnitario * compra.Quantidade;*/
 
-            using(var contexto = new LojaContext())
+            var p1 = new Produto() { Nome = "Suco de Laranja", Categoria = "Bebidas", PrecoUnitario = 8.79, Unidade = "Litros" };
+            var p2 = new Produto() { Nome = "Café", Categoria = "Bebidas", PrecoUnitario = 12.45, Unidade = "Gramas" };
+            var p3 = new Produto() { Nome = "Macarrão", Categoria = "Alimentos", PrecoUnitario = 4.23, Unidade = "Gramas" };
+
+
+            var promocaoDePascoa = new Promocao();
+            promocaoDePascoa.Descricao = "Páscoa Felipe";
+            promocaoDePascoa.DataInicio = DateTime.Now;
+            promocaoDePascoa.DataTermino = DateTime.Now.AddMonths(3);
+            promocaoDePascoa.IncluiProduto(p1);
+            promocaoDePascoa.IncluiProduto(p2);
+            promocaoDePascoa.IncluiProduto(p3);
+
+            using (var contexto = new LojaContext())
             {
                 //-----Inicio - Mostra os comandos no banco-------------------
                 var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
@@ -33,7 +45,19 @@ namespace Alura.Loja.Testes.ConsoleApp
                 loggerFactory.AddProvider(SqlLoggerProvider.Create());
                 //-----Fim - Mostra os comandos no banco----------------------
 
-                contexto.Compras.Add(compra);
+                //--------------------------------------------------------------
+                /*
+                //contexto.Promocoes.Add(promocaoDePascoa);
+                var promocao = contexto.Promocoes.Find(1);
+                contexto.Promocoes.Remove(promocao);
+                
+                contexto.SaveChanges();
+                ExibeEntries(contexto.ChangeTracker.Entries());
+                Console.ReadLine();*/
+
+                //--------------------------------------------------------------
+
+                /*contexto.Compras.Add(compra);
 
                 ExibeEntries(contexto.ChangeTracker.Entries());
 
@@ -41,7 +65,7 @@ namespace Alura.Loja.Testes.ConsoleApp
 
                 ExibeEntries(contexto.ChangeTracker.Entries());
 
-                Console.ReadLine();
+                Console.ReadLine();*/
             }
 
         }
